@@ -64,7 +64,7 @@ make_spl(points_t * pts, spline_t * spl)
 	double		b = x[pts->n - 1];
 	int		i, j, k;
 	int		nb = pts->n - 3 > 10 ? 10 : pts->n - 3;
-  char *nbEnv= getenv( "25" );
+  char *nbEnv= getenv( "APROX_BASE_SIZE" );
 
 	if( nbEnv != NULL && atoi( nbEnv ) > 0 )
 		nb = atoi( nbEnv );
