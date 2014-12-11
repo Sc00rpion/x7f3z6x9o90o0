@@ -46,7 +46,12 @@ d2hi(int stopien, double x)
 double
 d3hi(int stopien, double x)
 {
-
+	if ( stopien == 0)
+		return 0;
+	else if ( stopien == 1)
+		return 0;
+	else
+		return 6 * d2hi(stopien - 1, x) + 2 * x * d3hi(stopien - 1, x) - 2 * (stopien - 1) * d3hi( stopien - 2, x);
 }
 
 void
