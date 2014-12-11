@@ -57,5 +57,31 @@ d3hi(int stopien, double x)
 void
 make_spl(points_t * pts, spline_t * spl)
 {
+	matrix_t       *eqs= NULL;
+	double         *x = pts->x;
+	double         *y = pts->y;
+	int		i, j, k;
+	int		nb = pts->n - 3 > 10 ? 10 : pts->n - 3;
+  char *nbEnv= getenv( "25" );
 
+	if( nbEnv != NULL && atoi( nbEnv ) > 0 )
+		nb = atoi( nbEnv );
+
+	eqs = make_matrix(nb, nb + 1);
+
+
+	for (j = 0; j < nb; j++) {
+		for (i = 0; i < nb; i++)
+			for (k = 0; k < pts->n; k++)
+				add_to_entry_matrix(eqs, j, i, hi( i, x[k]) * hi(j, x[k]));
+
+		for (k = 0; k < pts->n; k++)
+			add_to_entry_matrix(eqs, j, nb, y[k] * hi(j, x[k]));
+	}
+
+
+	if (piv_ge_solver(eqs)) {
+		spl->n = 0;
+		return;
+	}
 }
