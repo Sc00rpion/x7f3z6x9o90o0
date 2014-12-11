@@ -10,7 +10,12 @@
 double
 hi(int stopien, double x)
 {
-
+	if ( stopien == 0)
+		return 1;
+	else if ( stopien == 1)
+		return 2 * x;
+	else
+		return 2 * x * hi(stopien - 1, x) - 2 * (stopien - 1) * hi( stopien - 2, x);
 }
 
 /* Pierwsza pochodna hi */
