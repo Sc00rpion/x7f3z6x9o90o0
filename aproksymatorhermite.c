@@ -34,7 +34,12 @@ dhi(int stopien, double x)
 double
 d2hi(int stopien, double x)
 {
-
+	if ( stopien == 0)
+		return 0;
+	else if ( stopien == 1)
+		return 0;
+	else
+		return 4 * dhi(stopien - 1, x) + 2 * x * d2hi(stopien - 1, x) - 2 * (stopien - 1) * d2hi( stopien - 2, x);
 }
 
 /* Trzecia pochodna hi */
