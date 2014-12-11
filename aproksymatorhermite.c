@@ -22,7 +22,12 @@ hi(int stopien, double x)
 double
 dhi(int stopien, double x)
 {
-
+	if ( stopien == 0)
+		return 0;
+	else if ( stopien == 1)
+		return 2;
+	else
+		return 2 * hi(stopien - 1, x) + 2 * x * dhi(stopien - 1, x) - 2 * (stopien - 1) * dhi(stopien - 2, x);
 }
 
 /* Druga pochodna hi */
