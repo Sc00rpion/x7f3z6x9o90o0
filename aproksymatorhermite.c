@@ -57,21 +57,19 @@ d3hi(int stopien, double x)
 void
 make_spl(points_t * pts, spline_t * spl)
 {
-	matrix_t       *eqs= NULL;
-	double         *x = pts->x;
-	double         *y = pts->y;
+	matrix_t   	*eqs= NULL;
+	double     	*x = pts->x;
+	double     	*y = pts->y;
 	double		a = x[0];
 	double		b = x[pts->n - 1];
-	int		i, j, k;
-	int		nb = pts->n - 3 > 10 ? 10 : pts->n - 3;
-  char *nbEnv= getenv( "APROX_BASE_SIZE" );
+	int			i, j, k;
+	int			nb = pts->n - 3 > 10 ? 10 : pts->n - 3;
+	char 		*nbEnv= getenv( "APROX_BASE_SIZE" );
 
 	if( nbEnv != NULL && atoi( nbEnv ) > 0 )
 		nb = atoi( nbEnv );
 
 	eqs = make_matrix(nb, nb + 1);
-
-
 	for (j = 0; j < nb; j++) {
 		for (i = 0; i < nb; i++)
 			for (k = 0; k < pts->n; k++)
@@ -80,8 +78,6 @@ make_spl(points_t * pts, spline_t * spl)
 		for (k = 0; k < pts->n; k++)
 			add_to_entry_matrix(eqs, j, nb, y[k] * hi(j, x[k]));
 	}
-
-
 	if (piv_ge_solver(eqs)) {
 		spl->n = 0;
 		return;

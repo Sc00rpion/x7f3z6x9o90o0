@@ -30,7 +30,6 @@ read_spl (FILE * inf, spline_t * spl)
         (inf, "%lf %lf %lf %lf %lf", spl->x + i, spl->f + i, spl->f1 + i,
          spl->f2 + i, spl->f3 + i) != 5)
       return 1;
-
   return 0;
 }
 
@@ -41,7 +40,7 @@ write_spl (spline_t * spl, FILE * ouf)
   fprintf (ouf, "%d\n", spl->n);
   for (i = 0; i < spl->n; i++)
     fprintf (ouf, "%g %g %g %g %g\n", spl->x[i], spl->f[i], spl->f1[i],
-             spl->f2[i], spl->f3[i]);
+    spl->f2[i], spl->f3[i]);
 }
 
 double
